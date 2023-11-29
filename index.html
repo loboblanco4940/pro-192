@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sensei Japo</title>
+
+        <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+      
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+        <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+    </head>
+
+    <body style="margin : 0px; overflow: hidden;">
+        <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;trakingMethod:best"
+        vr-mode-ui="enabled: false;" gesture-detector>
+
+            <!-- Cámara -->
+            <a-entity camera></a-entity>
+
+            <!--Recursos-->
+            <a-assets>
+                <a-asset-item id="dog" src="./assets/Animal/dog/scene.gltf"></a-asset-item>
+                <a-asset-item id="elephant" src="./assets/Animal/elephant/scene.gltf"></a-asset-item>
+                <a-asset-item id="fish" src="./assets/Animal/fish/scene.gltf"></a-asset-item>
+                <a-asset-item id="lion" src="./assets/Animal/lion/scene.gltf"></a-asset-item>
+                <a-asset-item id="polar bear" src="./assets/Animal/polar bear/scene.gltf"></a-asset-item>
+
+                <audio id="perritoladra" src="./assets/sound/dog-barking.wav"></audio>
+                <audio id="trompetaelefante" src="./assets/sound/elephant-trompet.mp3"></audio>
+                <audio id="peznada" src="./assets/sound/fish-swimming.mp3"></audio>
+                <audio id="leonruge" src="./assets/sound/leon-rawr.mp3"></audio>
+                <audio id="osoroar" src="./assets/sound/polar-bear- roar.mp3"></audio>
+            </a-assets>
+
+            <!-- Marcador Hiro -->
+            <a-marker preset="hiro">
+                <a-entity id="dog" position="10 0 0" gltf-model="#dog" rotation="0 0 0" scale="1 1 1" animation-mixer>       
+                </a-entity>
+                </a-entity>
+            </a-marker>
+
+            <!--Marcador Pattern -->
+            <a-marker id="perrito-marker" type="pattern" url="./assets/pattern-perro.patt" cursor="rayOrigin: mouse">
+                <a-entity id="dog" position="10 0 0" gltf-model="#dog" rotation="0 0 0" scale="1 1 1" animation-mixer>       
+                </a-entity>
+                <a-entity id="sonidoperro" sound="src: #perritoladra; poolSize:2; autoplay: false; volume:2;loop:false"></a-entity>
+            </a-marker>
+            
+            <a-marker id="leon-marker" type="pattern" url="./assets/pattern-leon.patt" cursor="rayOrigin: mouse">
+                <a-entity id="lion" position="40 0 0" gltf-model="#lion" rotation="0 0 0" scale="1 1 1" animation-mixer>       
+                </a-entity>
+            </a-marker>
+
+            <a-marker id="oso-marker" type="pattern" url="./assets/pattern-oso.patt" cursor="rayOrigin: mouse">
+                <a-entity id="polar bear" position="50 0 0" gltf-model="#polar bear" rotation="0 0 1" scale="0.01 0.01 0.01" animation-mixer>       
+                </a-entity>
+            </a-marker>
+            
+            <a-marker id="fish-marker" type="pattern" url="./assets/pattern-pez.patt" cursor="rayOrigin: mouse">
+                <a-entity id="fish" position="30 0 0" gltf-model="#fish" rotation="0 0 0" scale="0.01 0.01 0.01" animation-mixer>       
+                </a-entity>                
+            </a-marker>
+
+            <a-entity id="camera" camera position="10 0 0" rotation="0 0 0" look-controls="pointerLockEnabled: false">
+
+                
+
+                <a-entity id="elephant" position="20 0 0" gltf-model="#elephant" rotation="0 0 0" scale="1 1 1" animation-mixer>       
+                </a-entity>
+
+                
+                <a-entity id="sonidoelefante" sound="src: #trompetaelefante; poolSize:2; autoplay: false; volume:2;loop:false"></a-entity>
+                <a-entity id="sonidopez" sound="src: #peznada; poolSize:2; autoplay: false; volume:2;loop:false"></a-entity>
+                <a-entity id="sonidoleon" sound="src: #leonruge; poolSize:2; autoplay: false; volume:2;loop:false"></a-entity>
+                <a-entity id="sonidooso" sound="src: #osoroar; poolSize:2; autoplay: false; volume:2;loop:false"></a-entity>
+            
+            </a-entity>
+        </a-scene>
+    </body>
+</html>
